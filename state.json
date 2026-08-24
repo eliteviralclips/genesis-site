@@ -1,7 +1,7 @@
 {
   "agent": "Swego",
   "mode": "sim",
-  "updated_at": "2026-08-24T20:53:38.565508+00:00",
+  "updated_at": "2026-08-24T21:02:07.866056+00:00",
   "wallet": {
     "address": "GHkeEdkqhK31t84f3uVQRDizmVPAWZoup1DraxFopUKL",
     "balance_sol": 0.0
@@ -19,6 +19,13 @@
     "unrealized_sol": 0.0,
     "total_sol": 0.0,
     "win_rate_pct": null,
+    "book": {
+      "starting_sol": 10.0,
+      "cash_sol": 10.0,
+      "equity_sol": 10.0,
+      "pnl_sol": 0.0,
+      "pnl_pct": 0.0
+    },
     "closed": []
   },
   "launches": [],
