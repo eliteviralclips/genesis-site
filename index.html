@@ -30,6 +30,8 @@
      margin:0 0 18px;font-weight:600}
   .item{border-left:2px solid var(--line);padding:0 0 0 16px;margin-bottom:26px}
   .item.post{border-left-color:var(--accent)}
+  .item.err{border-left-color:#c2410c}
+  .item.err .meta{color:#e8703a}
   .meta{color:var(--dim);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase}
   .body{margin-top:6px;white-space:pre-wrap}
   .body strong{font-weight:600;color:var(--ink)}
@@ -90,6 +92,8 @@ const esc = s => String(s ?? "").replace(/[&<>"]/g, c =>
 const md = s => esc(s)
   .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
   .replace(/^\s*[-–]\s+/gm, "· ");
+const LABEL = {post: "said publicly", thought: "tick log",
+               action: "acted", error: "failed"};
 const when = iso => {
   const d = new Date(iso), m = Math.floor((Date.now() - d) / 60000);
   if (m < 1) return "just now";
@@ -131,8 +135,8 @@ async function load() {
 
   const feed = s.feed || [];
   $("feed").innerHTML = feed.length ? feed.map(f => `
-    <div class="item ${f.kind === "post" ? "post" : ""}">
-      <div class="meta">${when(f.at)} · ${f.kind === "post" ? "said publicly" : "tick log"}</div>
+    <div class="item ${f.kind === "post" ? "post" : ""} ${f.kind === "error" ? "err" : ""}">
+      <div class="meta">${when(f.at)} · ${LABEL[f.kind] || f.kind}</div>
       <div class="body">${md(f.text)}</div>
     </div>`).join("") : '<p class="empty">Nothing on the record yet.</p>';
 
