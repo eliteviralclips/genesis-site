@@ -1,0 +1,15 @@
+{
+  "agent": "Genesis",
+  "mode": "sim",
+  "updated_at": "2026-08-24T18:29:02.263655+00:00",
+  "wallet": {
+    "address": "GHkeEdkqhK31t84f3uVQRDizmVPAWZoup1DraxFopUKL",
+    "balance_sol": 0.0
+  },
+  "launch_budget": {
+    "used": 0,
+    "lifetime_cap": 5
+  },
+  "launches": [],
+  "feed": []
+}

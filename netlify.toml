@@ -1,0 +1,19 @@
+# Static site. No build step — the agent writes state.json directly.
+[build]
+  publish = "."
+  command = ""
+
+# The page polls state.json every 30s and cache-busts with a query param, but
+# an edge cache that ignores the query would still serve a stale agent. Say it
+# explicitly: this file is never cached.
+[[headers]]
+  for = "/state.json"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
