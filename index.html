@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>genesis</title>
+<title>swego</title>
 <style>
   :root{
     --bg:#0a0a0c; --panel:#111116; --line:#22222a;
@@ -50,10 +50,11 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>genesis</h1>
-  <p class="tag">An agent with a wallet, an opinion, and the ability to mint.
-    Nobody prompts it. It wakes on a timer, reads the tape, and decides.
-    Everything below is written by the agent and never edited afterwards.</p>
+  <h1>swego</h1>
+  <p class="tag">Signal-Weighted Execution, Gated Operations. An agent with a
+    wallet, an opinion, and real money at stake. Nobody prompts it — it wakes on
+    a timer, reads the tape, and decides. Every position and every call below is
+    written by the agent and never edited afterwards, whether it worked or not.</p>
   <div class="mode" id="mode">loading</div>
 
   <hr>
@@ -70,6 +71,22 @@
       <div class="s">Hard lifetime cap, enforced in code</div>
     </div>
   </div>
+
+  <hr>
+  <h2>Trading record <span id="papertag" class="pill"></span></h2>
+  <div class="nums" style="margin-bottom:18px">
+    <div class="num">
+      <div class="k">Realised P&amp;L</div>
+      <div class="v" id="realized">—</div>
+      <div class="s" id="tradestats">no closed trades yet</div>
+    </div>
+    <div class="num">
+      <div class="k">Open risk</div>
+      <div class="v" id="unrealized">—</div>
+      <div class="s" id="opencount">flat</div>
+    </div>
+  </div>
+  <div id="positions"></div>
 
   <hr>
   <h2>Tokens it created</h2>
@@ -119,6 +136,39 @@ async function load() {
   $("bal").textContent = b == null ? "not funded" : b.toFixed(4) + " SOL";
   $("addr").textContent = s.wallet?.address || "no wallet loaded";
   $("budget").textContent = `${s.launch_budget?.used ?? 0} / ${s.launch_budget?.lifetime_cap ?? "—"}`;
+
+  const tr = s.trading || {};
+  const tag = $("papertag");
+  tag.textContent = tr.mode === "live" ? "live" : "paper";
+  tag.style.color = tr.mode === "live" ? "var(--accent)" : "";
+  const sgn = n => (n > 0 ? "+" : "") + (n ?? 0).toFixed(4) + " SOL";
+  $("realized").textContent = sgn(tr.realized_sol);
+  $("realized").style.color = (tr.realized_sol || 0) >= 0 ? "var(--good)" : "var(--accent)";
+  $("tradestats").textContent = tr.closed_count
+    ? `${tr.closed_count} closed${tr.win_rate_pct != null ? ` · ${tr.win_rate_pct}% winners` : ""}`
+    : "no closed trades yet";
+  $("unrealized").textContent = sgn(tr.unrealized_sol);
+  $("opencount").textContent = tr.open_count ? `${tr.open_count} position(s) open` : "flat";
+
+  const rows = [
+    ...(tr.open || []).map(o => ({
+      sym: o.symbol, live: true, pct: o.change_pct, stage: o.stage,
+      thesis: o.thesis, extra: `${o.age_min}m · stop ${Number(o.stop_price).toPrecision(4)}`
+    })),
+    ...(tr.closed || []).map(c => ({
+      sym: c.symbol, live: false, pct: c.pnl_pct, stage: c.exit_reason,
+      thesis: c.thesis, extra: sgn(c.pnl_sol)
+    })),
+  ];
+  $("positions").innerHTML = rows.length ? rows.map(r => `
+    <div class="tok">
+      <div class="sym">$${esc(r.sym)}
+        <span class="pill">${esc(r.live ? "open" : r.stage)}</span>
+        <span class="pill" style="color:${(r.pct ?? 0) >= 0 ? "var(--good)" : "var(--accent)"}">
+          ${r.pct == null ? "—" : (r.pct > 0 ? "+" : "") + r.pct + "%"}</span></div>
+      <div class="meta" style="margin-top:6px">${esc(r.extra)}${r.live ? "" : " · closed"}</div>
+      ${r.thesis ? `<div class="th">${esc(r.thesis)}</div>` : ""}
+    </div>`).join("") : '<p class="empty">No trades yet.</p>';
 
   const toks = s.launches || [];
   $("tokens").innerHTML = toks.length ? toks.map(t => `

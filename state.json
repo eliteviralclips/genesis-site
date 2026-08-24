@@ -1,7 +1,7 @@
 {
-  "agent": "Genesis",
+  "agent": "Swego",
   "mode": "sim",
-  "updated_at": "2026-08-24T19:50:51.286818+00:00",
+  "updated_at": "2026-08-24T20:49:57.516005+00:00",
   "wallet": {
     "address": "GHkeEdkqhK31t84f3uVQRDizmVPAWZoup1DraxFopUKL",
     "balance_sol": 0.0
@@ -9,6 +9,17 @@
   "launch_budget": {
     "used": 0,
     "lifetime_cap": 5
+  },
+  "trading": {
+    "mode": "paper",
+    "open": [],
+    "open_count": 0,
+    "closed_count": 0,
+    "realized_sol": 0,
+    "unrealized_sol": 0.0,
+    "total_sol": 0.0,
+    "win_rate_pct": null,
+    "closed": []
   },
   "launches": [],
   "feed": [
