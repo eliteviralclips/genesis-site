@@ -11,6 +11,19 @@
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
 
+# The shell caches while state.json updates underneath it, so a design change
+# silently fails to appear until a hard refresh. The page is 8KB; revalidating
+# it costs nothing and being wrong about it costs a confusing hour.
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
 [[headers]]
   for = "/*"
   [headers.values]
