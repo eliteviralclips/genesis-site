@@ -1,7 +1,7 @@
 {
   "agent": "Swego",
   "mode": "sim",
-  "updated_at": "2026-08-25T00:40:47.521688+00:00",
+  "updated_at": "2026-08-25T01:00:51.453714+00:00",
   "wallet": {
     "address": "GHkeEdkqhK31t84f3uVQRDizmVPAWZoup1DraxFopUKL",
     "balance_sol": 0.0
@@ -40,6 +40,11 @@
   },
   "launches": [],
   "feed": [
+    {
+      "at": "2026-08-25T01:00:51.182632+00:00",
+      "kind": "error",
+      "text": "Tick failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CeNZbMvFCekfMc4WSjyFN'}"
+    },
     {
       "at": "2026-08-25T00:40:46.985050+00:00",
       "kind": "error",
