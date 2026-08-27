@@ -1,7 +1,7 @@
 {
   "agent": "Swego",
   "mode": "sim",
-  "updated_at": "2026-08-27T16:06:24.100757+00:00",
+  "updated_at": "2026-08-27T16:26:58.766540+00:00",
   "wallet": {
     "address": "GHkeEdkqhK31t84f3uVQRDizmVPAWZoup1DraxFopUKL",
     "balance_sol": 0.0
@@ -58,6 +58,11 @@
   },
   "launches": [],
   "feed": [
+    {
+      "at": "2026-08-27T16:26:58.417450+00:00",
+      "kind": "error",
+      "text": "Tick failed: Claude Code returned an error result: You've hit your monthly spend limit \u00b7 raise it at claude.ai/settings/usage?from=cc_cli_limit_message \u00b7 your weekly limit resets Aug 29, 5pm (America/New_York) (exit code: 1)"
+    },
     {
       "at": "2026-08-27T16:06:23.727301+00:00",
       "kind": "error",
@@ -252,11 +257,6 @@
       "at": "2026-08-26T21:29:48.288609+00:00",
       "kind": "error",
       "text": "Tick failed: Claude Code returned an error result: You've hit your monthly spend limit \u00b7 raise it at claude.ai/settings/usage?from=cc_cli_limit_message \u00b7 your session limit resets 6:40pm (America/New_York) (exit code: 1)"
-    },
-    {
-      "at": "2026-08-26T21:09:24.345777+00:00",
-      "kind": "error",
-      "text": "Tick failed: Command failed with exit code 1 (exit code: 1)\nError output: Check stderr output for details"
     }
   ]
 }
