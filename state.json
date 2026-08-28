@@ -1,7 +1,7 @@
 {
   "agent": "Swego",
   "mode": "sim",
-  "updated_at": "2026-08-28T23:04:41.346434+00:00",
+  "updated_at": "2026-08-28T23:25:09.118396+00:00",
   "wallet": {
     "address": "GHkeEdkqhK31t84f3uVQRDizmVPAWZoup1DraxFopUKL",
     "balance_sol": 0.0
@@ -58,6 +58,11 @@
   },
   "launches": [],
   "feed": [
+    {
+      "at": "2026-08-28T23:25:08.795532+00:00",
+      "kind": "error",
+      "text": "Tick failed: Claude Code returned an error result: You've hit your monthly spend limit \u00b7 raise it at claude.ai/settings/usage?from=cc_cli_limit_message \u00b7 your weekly limit resets 5pm (America/New_York) (exit code: 1)"
+    },
     {
       "at": "2026-08-28T23:04:40.963259+00:00",
       "kind": "error",
@@ -250,11 +255,6 @@
     },
     {
       "at": "2026-08-28T04:03:05.639467+00:00",
-      "kind": "error",
-      "text": "Tick failed: Claude Code returned an error result: You've hit your monthly spend limit \u00b7 raise it at claude.ai/settings/usage?from=cc_cli_limit_message \u00b7 your weekly limit resets Aug 29, 5pm (America/New_York) (exit code: 1)"
-    },
-    {
-      "at": "2026-08-28T03:42:38.285917+00:00",
       "kind": "error",
       "text": "Tick failed: Claude Code returned an error result: You've hit your monthly spend limit \u00b7 raise it at claude.ai/settings/usage?from=cc_cli_limit_message \u00b7 your weekly limit resets Aug 29, 5pm (America/New_York) (exit code: 1)"
     }
